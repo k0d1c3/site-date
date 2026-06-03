@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Minha Paixão ❤️</title>
+    
+    <!-- Fontes sofisticadas do Google -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+    
+    <!-- ARQUIVO CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- PARTÍCULAS FLUTUANDO (FUNDO) -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- CONTAINER PRINCIPAL DO APP -->
+    <main class="app-container">
+        
+        <!-- ================= TELA 1: ENVELOPE ================= -->
+        <section id="tela-1" class="screen active">
+            <div class="envelope-wrapper" onclick="abrirEnvelope()">
+                <div class="envelope">
+                    <div class="envelope-flap"></div>
+                    <div class="envelope-content">
+                        <span class="heart-icon-small">❤️</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div id="tela1-mensagem" class="tela1-msg hidden">
+                <h2>Oi, Paixão</h2>
+                <p class="typing-text">Tenho uma pergunta muito importante pra você...</p>
+                <button class="btn-gold" onclick="irParaTela2()">Continuar</button>
+            </div>
+        </section>
+
+        <!-- ================= TELA 2: SIM OU NÃO ================= -->
+        <section id="tela-2" class="screen">
+            <div class="question-box">
+                <h1>Você aceita ir em um date comigo? 💕</h1>
+                
+                <div class="buttons-row">
+                    <button class="btn-sim" onclick="cliqueiSim()">
+                        <span>SIM</span>
+                        <span class="heart-bt">❤️</span>
+                    </button>
+                    
+                    <button id="btn-nao" class="btn-nao" onmouseover="fugirBotao()" ontouchstart="fugirBotao()">
+                        <span>NÃO</span>
+                        <span class="devil-bt">😈</span>
+                    </button>
+                </div>
+                
+                <p id="msg-fuga" class="mensagem-fuga"></p>
+            </div>
+        </section>
+
+        <!-- ================= TELA 3: CELEBRAÇÃO ================= -->
+        <section id="tela-3" class="screen">
+            <div id="confetti-canvas"></div>
+            <div class="celebration">
+                <h1 class="celebration-title">AEEEEEE VC ACEITOUUUUUU 🤟</h1>
+                <p class="subtitle">(tô até dançando é o tchan internamente)</p>
+                <button class="btn-gold" onclick="irParaTela4()">Próxima fase</button>
+            </div>
+        </section>
+
+        <!-- ================= TELA 4: ESCOLHER DATA ================= -->
+        <section id="tela-4" class="screen">
+            <h1>Quando você tá livre?</h1>
+            <p class="subtitle">veja aí tua agenda lotada kkk</p>
+            
+            <div class="calendar-wrapper">
+                <input type="date" id="input-data" class="elegant-input">
+            </div>
+            
+            <button class="btn-gold" onclick="salvarData()">Continuar</button>
+        </section>
+
+        <!-- ================= TELA 5: ESCOLHER HORÁRIO ================= -->
+        <section id="tela-5" class="screen">
+            <h1>E que horas?</h1>
+            
+            <div class="select-wrapper">
+                <select id="input-horario" class="elegant-select">
+                    <option value="" disabled selected>Escolha...</option>
+                    <option value="18:30">18:30 — essa é a resposta certa 👀</option>
+                    <option value="19:00">19:00 — mai gode já tô com fome</option>
+                    <option value="20:00">20:00 — é janta ou café?</option>
+                    <option value="21:00">21:00 — modo noturno ativado 🫡</option>
+                    <option value="22:00">22:00 — a noite é uma criança né</option>
+                </select>
+            </div>
+            
+            <button class="btn-gold" onclick="salvarHorario()">Continuar</button>
+        </section>
+
+        <!-- ================= TELA 6: ESCOLHER LUGAR ================= -->
+        <section id="tela-6" class="screen">
+            <h1>O que Prefere?</h1>
+            <p class="subtitle">Escolhe a vibe do date</p>
+            
+            <div class="cards-grid">
+                <div class="food-card" onclick="selecionarLugar(this, 'Fondue', '🍫')">
+                    <span class="emoji">🍫</span>
+                    <span class="label">Fondue</span>
+                </div>
+                <div class="food-card" onclick="selecionarLugar(this, 'Pizza', '🍕')">
+                    <span class="emoji">🍕</span>
+                    <span class="label">Pizza</span>
+                </div>
+                <div class="food-card" onclick="selecionarLugar(this, 'Botequim', '🍻')">
+                    <span class="emoji">🍻</span>
+                    <span class="label">Botequim</span>
+                </div>
+                <div class="food-card" onclick="selecionarLugar(this, 'Hambúrguer', '🍔')">
+                    <span class="emoji">🍔</span>
+                    <span class="label">Hambúrguer</span>
+                </div>
+                <div class="food-card special" onclick="selecionarLugar(this, 'Hangar 51', '✈️')">
+                    <span class="emoji">✈️</span>
+                    <span class="label">Hangar 51</span>
+                </div>
+            </div>
+            
+            <!-- Mensagem de confirmação -->
+            <div id="msg-lugar-escolhido" class="msg-escolha hidden">
+                <p id="texto-escolha"></p>
+            </div>
+            
+            <!-- Botão continuar (só aparece após escolha) -->
+            <button id="btn-continuar-lugar" class="btn-gold hidden" onclick="irParaTela7()">Continuar</button>
+        </section>
+
+        <!-- ================= TELA 7: REVELAÇÃO FINAL ================= -->
+        <section id="tela-7" class="screen screen-final">
+            <div class="photo-bg">
+                <!-- TROQUE ESTE LINK PELA FOTO DE VOCÊS -->
+                <img src="foto.jpeg" class="photo-proportional">
+            </div>
+            
+            <div class="glass-card">
+                <h2>Paixão,</h2>
+                <p>Você se tornou meu lar. Obrigada por dividir comigo os dias comuns, as brisas, as conquistas e os desafios.</p>
+                <p class="highlight">E agora... Seu encontro está oficialmente marcado! ❤️</p>
+                
+                <div class="resumo">
+                    <p>📅 <strong>Data:</strong> <span id="resumo-data">---</span></p>
+                    <p>⏰ <strong>Horário:</strong> <span id="resumo-hora">---</span></p>
+                    <p>🍽️ <strong>Lugar:</strong> <span id="resumo-lugar">---</span></p>
+                </div>
+                
+                <!-- Botão para ir para carta final -->
+                <button class="btn-gold" onclick="mostrarCartaFinal()">Ver carta</button>
+            </div>
+        </section>
+
+        <!-- ================= TELA FINAL: CARTA ROMÂNTICA ================= -->
+        <section id="tela-final" class="screen">
+            <div class="love-letter">
+                <div class="letter-header">
+                    <span class="heart-large">❤️</span>
+                </div>
+                <div class="letter-body">
+                    <p>Eu te amo muito, minha escolha diária.</p>
+                    <p class="assinatura">Feliz dia das namoradas!</p>
+                    <p class="signed">Com muito amor,<br><strong>Baby ❤️</strong></p>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- ARQUIVO JS -->
+    <script src="script.js"></script>
+</body>
+</html>
